@@ -7,6 +7,14 @@ import logging
 import time
 from datetime import datetime
 
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+API_KEY = os.getenv("BINANCE_API_KEY")
+LOG_FILE = os.getenv("LOG_FILE", "output.csv")
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
