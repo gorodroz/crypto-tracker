@@ -1,4 +1,5 @@
-requests
-websocket-client
-pandas
-dotenv
+PyQt6
+websockets
+aiohttp
+qasync
+flake8
