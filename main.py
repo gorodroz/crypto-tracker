@@ -1,5 +1,5 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QVBoxLayout, QWidget
+from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QVBoxLayout, QWidget, QSizePolicy
 from PyQt5.QtCore import QTimer
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
@@ -11,6 +11,7 @@ class CryptoTracker(QMainWindow):
         super().__init__()
         self.setWindowTitle("Bitcoin Tracker")
         self.setGeometry(100, 100, 800, 600)
+        self.setFixedSize(800, 600)
 
         # Головний віджет
         self.central_widget = QWidget()
@@ -28,6 +29,11 @@ class CryptoTracker(QMainWindow):
         # Полотно графіку
         self.figure = Figure()
         self.canvas = FigureCanvas(self.figure)
+
+        # Встановлюємо політику розміру
+        size_policy = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Maximum)
+        self.canvas.setSizePolicy(size_policy)
+
         self.layout.addWidget(self.canvas)
 
         # Таймер для автооновлення
