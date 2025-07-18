@@ -8,6 +8,7 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 from logic import get_binance_price, get_binance_kline_data
 from matplotlib.dates import DateFormatter
+from storage import save_price_to_csv
 
 
 class CryptoTracker(QMainWindow):
@@ -74,6 +75,11 @@ class CryptoTracker(QMainWindow):
         kline_data = get_binance_kline_data(self.symbol, self.interval, 30)
         if kline_data and kline_data[0]:
             timestamps, prices = kline_data
+
+            latest_ts = timestamps[-1]
+            latest_price = prices[-1]
+            save_price_to_csv(latest_ts, latest_price, self.symbol, self.interval)
+
             self.figure.clear()
             ax = self.figure.add_subplot(111)
             ax.plot(timestamps, prices, color='orange', marker='o')
