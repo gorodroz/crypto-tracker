@@ -1,5 +1,3 @@
-PyQt6
-websockets
-aiohttp
-qasync
-flake8
+PyQt5
+matplotlib
+requests
